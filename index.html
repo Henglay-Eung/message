@@ -1,54 +1,108 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>A Message for You</title>
+<head>
+    <meta charset="UTF-8">
+    <title>Quick Question</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
-      body {
-        background: linear-gradient(135deg, #ffe6eb, #fff5f8);
-        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-        margin: 0;
-      }
+        body {
+            background: linear-gradient(135deg, #ffdde1, #ee9ca7);
+            font-family: "Segoe UI", sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
 
-      .card {
-        background: white;
-        padding: 30px 35px;
-        border-radius: 16px;
-        max-width: 420px;
-        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-        text-align: center;
-      }
+        .card {
+            background: white;
+            padding: 30px;
+            border-radius: 18px;
+            text-align: center;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+            width: 90%;
+            max-width: 340px;
+            position: relative;
+        }
 
-      h1 {
-        color: #ff5a7a;
-        margin-bottom: 15px;
-      }
+        h2 {
+            margin-bottom: 25px;
+            color: #333;
+        }
 
-      p {
-        color: #444;
-        font-size: 16px;
-        line-height: 1.6;
-      }
+        button {
+            padding: 12px 22px;
+            font-size: 16px;
+            border-radius: 25px;
+            border: none;
+            cursor: pointer;
+        }
 
-      .heart {
-        font-size: 28px;
-        margin: 20px 0;
-      }
+        #yesBtn {
+            background: #ff4d6d;
+            color: white;
+        }
 
-      .signature {
-        margin-top: 20px;
-        color: #666;
-        font-style: italic;
-      }
+        #noBtn {
+            background: #ddd;
+            color: #333;
+            position: absolute;
+        }
+
+        .result {
+            margin-top: 25px;
+            font-size: 18px;
+            display: none;
+        }
     </style>
-  </head>
-  <body>
-    <div class="card">
-      <h1>I'm just a nerd yk😭</h1>
+</head>
+<body>
+
+<div class="card">
+    <h2>Do you want to go out with me? 😊</h2>
+
+    <button id="yesBtn" onclick="sayYes()">Yes 💖</button>
+    <button id="noBtn">No 🙃</button>
+
+    <div class="result" id="result">
+        Yay 🥰<br>
+        Coffee is on me.
     </div>
-  </body>
+</div>
+
+<script>
+    const noBtn = document.getElementById("noBtn");
+    const card = document.querySelector(".card");
+
+    // Initial position
+    noBtn.style.top = "140px";
+    noBtn.style.left = "180px";
+
+    function moveNoButton() {
+        const maxX = card.offsetWidth - noBtn.offsetWidth;
+        const maxY = card.offsetHeight - noBtn.offsetHeight;
+
+        const randomX = Math.random() * maxX;
+        const randomY = Math.random() * maxY;
+
+        noBtn.style.left = randomX + "px";
+        noBtn.style.top = randomY + "px";
+    }
+
+    // Desktop
+    noBtn.addEventListener("mouseenter", moveNoButton);
+
+    // Mobile
+    noBtn.addEventListener("touchstart", (e) => {
+        e.preventDefault(); // stop accidental tap
+        moveNoButton();
+    });
+
+    function sayYes() {
+        document.getElementById("result").style.display = "block";
+    }
+</script>
+
+</body>
 </html>
